@@ -1,4 +1,6 @@
-var fill;
+var $, fill;
+
+$ = require('jquery');
 
 (fill = function(description) {
   return $('#description').append("" + description);
