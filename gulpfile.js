@@ -1,7 +1,9 @@
 var gulp = require('gulp'),
     gutil = require('gulp-util'),
+    gulpif = require('gulp-if'),
     coffee = require('gulp-coffee'),
     browserify = require('gulp-browserify'),
+    uglify = require('gulp-uglify'),
     compass = require('gulp-compass'),
     connect = require('gulp-connect'),
     concat = require('gulp-concat');
@@ -39,6 +41,7 @@ gulp.task('js', function(){
     gulp.src(javaScripts)
         .pipe(concat('script.js'))
         .pipe(browserify())
+        .pipe(gulpif(env === 'production', uglify()))
         .pipe(gulp.dest(outputDir + 'js'))
         .pipe(connect.reload())
 });
